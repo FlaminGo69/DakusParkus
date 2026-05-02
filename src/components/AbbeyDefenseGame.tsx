@@ -56,7 +56,7 @@ export default function AbbeyDefenseGame() {
       enemySpawnTimerRef.current += dt;
       if (enemySpawnTimerRef.current >= nextEnemySpawnTimeRef.current) { 
         enemySpawnTimerRef.current = 0;
-        nextEnemySpawnTimeRef.current = Math.random() * 3.5 + 1.0; // Random interval between 1.0 and 4.5 seconds
+        nextEnemySpawnTimeRef.current = Math.random() * 4.0 + 2.0; // Random interval between 2.0 and 6.0 seconds
         entitiesRef.current.push({
           id: Math.random().toString(36).substring(7),
           type: 'devil',
@@ -215,20 +215,7 @@ export default function AbbeyDefenseGame() {
           </div>
         </div>
 
-        {/* Game State Overlay */}
-        {gameState !== 'playing' && (
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-black/90 p-6 rounded-lg border-2 border-[#f90] text-center pointer-events-auto flex flex-col items-center shadow-[0_0_20px_#f90]">
-            <h2 className="text-4xl font-bold mb-2">
-              {gameState === 'won' ? 'DEUS VULT!' : 'PURGATORY AWAITS'}
-            </h2>
-            <p className="text-gray-400 mb-4">
-              {gameState === 'won' ? 'The holy lands have been purged.' : 'The abbey has fallen to the darkness.'}
-            </p>
-            <button onClick={restart} className="bg-[#f90] text-black font-bold px-6 py-2 rounded hover:bg-orange-600 transition">
-              Play Again
-            </button>
-          </div>
-        )}
+
 
         {/* Enemy Stats (Passive) */}
         <div>
@@ -277,6 +264,23 @@ export default function AbbeyDefenseGame() {
         ))}
       </div>
       
+      {/* Game State Overlay */}
+      {gameState !== 'playing' && (
+        <div className="absolute inset-0 z-50 flex items-center justify-center pointer-events-auto bg-black/60">
+          <div className="bg-black/90 p-4 md:p-6 rounded-lg border-2 border-[#f90] text-center flex flex-col items-center shadow-[0_0_20px_#f90] max-w-[90%]">
+            <h2 className="text-2xl md:text-4xl font-bold mb-2 text-white">
+              {gameState === 'won' ? 'DEUS VULT!' : 'PURGATORY AWAITS'}
+            </h2>
+            <p className="text-gray-400 mb-4 text-sm md:text-base">
+              {gameState === 'won' ? 'The holy lands have been purged.' : 'The abbey has fallen to the darkness.'}
+            </p>
+            <button onClick={restart} className="bg-[#f90] text-black font-bold px-6 py-2 rounded hover:bg-orange-600 transition">
+              Play Again
+            </button>
+          </div>
+        </div>
+      )}
+
       <div className="h-10 bg-gray-950 flex items-center justify-center text-xs text-gray-700 font-mono">
         paterhub interactive entertainment system
       </div>
