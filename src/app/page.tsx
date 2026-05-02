@@ -1,23 +1,5 @@
-import React from 'react';
-
-const mockVideos = [
-  { id: 1, title: 'Hot monk reciting the Psalms', author: 'Brother Thomas', views: '2.5M', duration: '14:20', thumbnailUrl: '/thumbnails/thumb_psalms.png' },
-  { id: 2, title: 'Step-friar gets stuck in the cloister', author: 'Abbot Francis', views: '1.2M', duration: '22:15', thumbnailUrl: '/thumbnails/thumb_stuck.png' },
-  { id: 3, title: 'Naughty novice breaks fasting rules (GONE WILD)', author: 'Sinner69', views: '800K', duration: '09:45', thumbnailUrl: '/thumbnails/thumb_fasting.png' },
-  { id: 4, title: "POV: You're confessing your sins", author: 'Father John', views: '4.1M', duration: '11:05', thumbnailUrl: '/thumbnails/thumb_confession.png' },
-  { id: 5, title: 'Gregorian Chants ASMR', author: 'ChoirBoys', views: '6.7M', duration: '55:00', thumbnailUrl: '/thumbnails/thumb_asmr.png' },
-  { id: 6, title: 'Relic Unboxing - TRUE CROSS PIECE?!', author: 'HolyRelics', views: '300K', duration: '18:30', thumbnailUrl: '/thumbnails/Relic Unboxing - TRUE CROSS PIECE!.png' },
-  { id: 7, title: 'Brewing Trappist Beer (100% EXCLUSIVE)', author: 'DrunkMonk', views: '2.1M', duration: '08:50', thumbnailUrl: '/thumbnails/Brewing Trappist Beer.png' },
-  { id: 8, title: 'Vow of Silence Compilation #4', author: 'SilentSteve', views: '901K', duration: '10:00', thumbnailUrl: '/thumbnails/Vow of silence.png' },
-  { id: 9, title: 'POV: You are excommunicated', author: 'PopeLife', views: '10.5M', duration: '4:20', thumbnailUrl: '' },
-  { id: 10, title: 'Sister Mary caught dancing to secular music', author: 'ConventGossip', views: '550K', duration: '1:15', thumbnailUrl: '' },
-  { id: 11, title: 'Fasting speedrun (40 days IN ONE SITTING)', author: 'DesertFather', views: '2.1M', duration: '12:00', thumbnailUrl: '' },
-  { id: 12, title: 'Illuminating a manuscript (SATISFYING PENMANSHIP)', author: 'ScribeMaster', views: '4.8M', duration: '45:30', thumbnailUrl: '' },
-  { id: 13, title: 'Top 10 Heresies of the 13th Century', author: 'InquisitorTV', views: '8.2M', duration: '15:45', thumbnailUrl: '' },
-  { id: 14, title: 'Getting my tonsure haircut (NOT CLICKBAIT)', author: 'NoviceVlogs', views: '950K', duration: '10:20', thumbnailUrl: '' },
-  { id: 15, title: 'Singing Vespers but every time we say Amen the bass drops', author: 'DJ_Friar', views: '1.1M', duration: '5:55', thumbnailUrl: '' },
-  { id: 16, title: 'Holy Water Challenge - Gone wrong!', author: 'PrankParish', views: '3.4M', duration: '8:40', thumbnailUrl: '' },
-];
+import Link from 'next/link';
+import { mockVideos } from '@/lib/data';
 
 export default function Home() {
   return (
@@ -96,7 +78,7 @@ export default function Home() {
           <h2 className="text-2xl font-bold mb-6 text-white">Trending Prayers</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
             {mockVideos.map(video => (
-              <a key={video.id} href="https://www.instagram.com/lolploeg_dakusparkus/" target="_blank" rel="noopener noreferrer" className="block group cursor-pointer">
+              <Link key={video.id} href={`/video/${video.id}`} className="block group cursor-pointer">
                 {/* Thumbnail placeholder or image */}
                 <div className="relative aspect-video bg-black rounded mb-2 overflow-hidden border border-gray-800 group-hover:border-[#f90] transition-colors">
                   {video.thumbnailUrl ? (
@@ -116,7 +98,7 @@ export default function Home() {
                   <span className="hover:text-white transition-colors">{video.author}</span>
                   <span>{video.views} views</span>
                 </div>
-              </a>
+              </Link>
             ))}
           </div>
         </main>
